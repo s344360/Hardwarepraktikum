@@ -1,0 +1,163 @@
+nessos#show start                                                               
+Using 2078 out of 196600 bytes                                                  
+!                                                                               
+! Last configuration change at 19:55:37 CDT Tue Apr 26 2016                     
+! NVRAM config last updated at 19:55:45 CDT Tue Apr 26 2016                     
+!                                                                               
+version 12.4                                                                    
+service timestamps debug datetime msec                                          
+service timestamps log datetime msec                                            
+no service password-encryption                                                  
+!                                                                               
+hostname nessos                                                                 
+!                                                                               
+boot-start-marker                                                               
+boot-end-marker                                                                 
+!                                                                               
+logging message-counter syslog                                                  
+logging buffered 51200 warnings                                                 
+enable password hwp                                                             
+!                                                                               
+no aaa new-model                                                                
+clock timezone CEST 1                                                           
+clock summer-time CDT recurring                                                 
+!                                                                               
+dot11 syslog                                                                    
+ip source-route                                                                 
+!                                                                               
+!                                                                               
+ip cef                                                                          
+!                                                                               
+!                                                                               
+ip domain name yourdomain.com                                                   
+ip name-server 132.187.12.16                                                    
+no ipv6 cef                                                                     
+!                                                                               
+multilink bundle-name authenticated                                             
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+voice-card 0                                                                    
+ no dspfarm                                                                     
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+archive                                                                         
+ log config                                                                     
+  hidekeys                                                                      
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+interface GigabitEthernet0/0                                                    
+ ip address 10.3.2.1 255.255.255.0                                              
+ duplex auto                                                                    
+ speed auto                                                                     
+!                                                                               
+interface GigabitEthernet0/1                                                    
+ ip address 172.16.32.13 255.255.255.0                                          
+ duplex auto                                                                    
+ speed auto                                                                     
+!                                                                               
+interface FastEthernet0/0/0                                                     
+!                                                                               
+interface FastEthernet0/0/1                                                     
+!                                                                               
+interface FastEthernet0/0/2                                                     
+!                                                                               
+interface FastEthernet0/0/3                                                     
+!                                                                               
+interface FastEthernet0/1/0                                                     
+ no ip address                                                                  
+ duplex auto                                                                    
+ speed auto                                                                     
+!                                                                               
+interface FastEthernet0/1/0.21                                                  
+ encapsulation dot1Q 21                                                         
+ ip address 10.2.1.254 255.255.255.0                                            
+!                                                                               
+interface FastEthernet0/1/0.22                                                  
+ encapsulation dot1Q 22                                                         
+ ip address 10.2.2.254 255.255.255.0                                            
+!                                                                               
+interface FastEthernet0/1/0.24                                                  
+!                                                                               
+interface FastEthernet0/2/0                                                     
+ ip address 10.3.5.1 255.255.255.0                                              
+ duplex auto                                                                    
+ speed auto                                                                     
+!                                                                               
+interface Serial0/3/0                                                           
+ no ip address                                                                  
+ shutdown                                                                       
+ clock rate 2000000                                                             
+!                                                                               
+interface Vlan1                                                                 
+ no ip address                                                                  
+!                                                                               
+ip forward-protocol nd                                                          
+ip route 10.1.1.0 255.255.255.0 10.3.2.2                                        
+ip route 10.1.2.0 255.255.255.0 10.3.5.2                                        
+ip route 10.3.2.0 255.255.255.0 10.3.2.2                                        
+ip route 10.3.5.0 255.255.255.0 10.3.5.2                                        
+ip route 132.187.0.0 255.255.0.0 172.16.32.1                                    
+no ip http server                                                               
+no ip http secure-server                                                        
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+control-plane                                                                   
+!                                                                               
+bridge 1 protocol ieee                                                          
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+line con 0                                                                      
+ exec-timeout 0 0                                                               
+line aux 0                                                                      
+line vty 0 4                                                                    
+ password hwp                                                                   
+ login                                                                          
+!                                                                               
+scheduler allocate 20000 1000                                                   
+ntp server 132.187.1.1                                                          
+ntp server 132.187.3.3                                                          
+ntp peer 132.187.1.3                                                            
+ntp server 31.19.179.253                                                        
+end

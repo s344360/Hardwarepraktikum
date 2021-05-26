@@ -1,0 +1,53 @@
+Schnittstelle eth0 konfigurieren:
+
+hwp@NETEM:~$ sudo ifconfig eth0 192.168.1.1 netmask 255.255.255.0 
+hwp@NETEM:~$ sudo ifconfig eth1 192.168.2.1 netmask 255.255.255.0
+
+hwp@NETEM:~$ ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:01:03:2a:36:2e  
+          inet addr:192.168.1.1  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::201:3ff:fe2a:362e/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1491 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:468 (468.0 B)  TX bytes:96244 (96.2 KB)
+          Interrupt:21 Base address:0xe400 
+
+eth1      Link encap:Ethernet  HWaddr 00:50:04:45:93:0b  
+          inet addr:192.168.2.1  Bcast:192.168.2.255  Mask:255.255.255.0
+          inet6 addr: fe80::250:4ff:fe45:930b/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:60 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:9589 (9.5 KB)
+          Interrupt:22 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:99872 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:99872 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:8176448 (8.1 MB)  TX bytes:8176448 (8.1 MB)
+
+
+Pfad erstellen:
+
+hwp@NETEM:~$ sudo route add default gw 192.168.1.2 eth0
+hwp@NETEM:~$ sudo route add default gw 192.168.2.0 eth1
+
+hwp@NETEM:~$ route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.1.2     0.0.0.0         UG    0      0        0 eth0
+192.168.1.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
+192.168.2.0     0.0.0.0         255.255.255.0   U     0      0        0 eth1
+
+
+ip-Weiterleitung erlauben:
+
+hwp@NETEM:~$ echo "1" | sudo tee /proc/sys/net/ipv4/ip_forward
+1

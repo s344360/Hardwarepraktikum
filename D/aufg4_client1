@@ -1,0 +1,49 @@
+Schnittstelle eth0 konfigurieren:
+
+hwp@hwp1:~$ sudo ifconfig eth0 192.168.1.2 netmask 255.255.255.0
+hwp@hwp1:~$ ifconfig
+
+eth0      Link encap:Ethernet  HWaddr 00:30:05:9e:3d:ad  
+          inet addr:192.168.1.2  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::230:5ff:fe9e:3dad/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:250 (250.0 B)
+          Interrupt:17 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:612 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:612 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:49056 (49.0 KB)  TX bytes:49056 (49.0 KB)
+
+
+Pfad erstellen:
+
+hwp@hwp1:~$ sudo route add default gw 192.168.1.1 eth0
+hwp@hwp1:~$ route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.1.1     0.0.0.0         UG    0      0        0 eth0
+192.168.1.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
+
+
+Traceroute-Bericht:
+
+hwp@hwp1:~$ traceroute 192.168.2.2
+traceroute to 192.168.2.2 (192.168.2.2), 30 hops max, 60 byte packets
+ 1  192.168.1.1 (192.168.1.1)  0.279 ms  0.253 ms  0.237 ms
+ 2  192.168.2.2 (192.168.2.2)  0.489 ms  0.514 ms  0.504 ms
+
+
+tcpdump-Bericht:
+
+hwp@hwp1:~$ tcpdump -v
+16:22:12.023752 IP 192.168.2.2 > 192.168.1.2: ICMP echo request, id 3563, seq 2, length 64
+16:22:12.023772 IP 192.168.1.2 > 192.168.2.2: ICMP echo reply, id 3563, seq 2, length 64
+

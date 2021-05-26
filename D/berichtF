@@ -1,0 +1,16 @@
+PC-Flensburg : PC-Distelhausen
+hwp@flensburg:~$ traceroute 10.2.1.1
+traceroute to 10.2.1.1 (10.2.1.1), 30 hops max, 60 byte packets
+ 1  10.1.1.254 (10.1.1.254)  1.084 ms  1.094 ms  1.319 ms
+ 2  10.3.1.2 (10.3.1.2)  1.070 ms  1.297 ms  1.290 ms
+ 3  10.3.2.1 (10.3.2.1)  1.028 ms  1.024 ms  1.251 ms
+ 4  10.2.1.1 (10.2.1.1)  0.973 ms  0.963 ms  0.953 ms
+
+PC-Flensburg : Telefon-Distelhausen
+hwp@flensburg:~$ traceroute 10.2.2.2
+traceroute to 10.2.2.2 (10.2.2.2), 30 hops max, 60 byte packets
+ 1  10.1.1.254 (10.1.1.254)  0.996 ms  0.988 ms  0.978 ms
+ 2  10.3.4.2 (10.3.4.2)  161.298 ms  200.219 ms  213.809 ms
+ 3  10.3.5.1 (10.3.5.1)  162.857 ms  129.061 ms  165.574 ms
+ 4  10.2.2.2 (10.2.2.2)  147.268 ms  129.461 ms  136.342 ms
+

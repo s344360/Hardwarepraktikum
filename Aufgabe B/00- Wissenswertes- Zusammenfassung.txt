@@ -1,0 +1,93 @@
+
+
+• OpenFlow:
+
+Open Flow ist ein Protokoll.
+
+Mit OpenFlow kann die Weiterleitung der Pakete in einem Router, Switch oder Access Point beeinflusst werden. Dadurch kann man dynamische Netze, speziell gesicherte Netzwerke, energie-effizientere Netze oder skalierbare Netzwerke, beispielsweise in Datencentern, aufbauen. 
+
+OpenFlow ist eine Schnittstelle (zentrale Schaltstelle) zur Steuerung der Adressierungstabellen in Netzwerk-Switches und Routern. 
+
+Indem diese Logik aus der Hardware heraus extrahiert wird,lässt sich dies auf einem speziellem Rechner, dem Controller, per Software steuern.
+
+Diese Schnittstelle ermöglicht es beispielsweise Forschern, mit einfachen Mitteln, Netzwerke mit komplexen Strukturen und Eigenschaften zu realisieren. 
+Doch nicht nur in der Forschung ist Software-Defined-Networking (SDN) interessant: Erst vor wenigen Tagen hat Google bekannt gegeben, dass dort nicht nur im internen Netz, sondern
+auch in den Rechenzentren großflächig auf OpenFlow gesetzt wird.
+
+Mehr zu OpenFlow findet ihr unter:
+http://www.openflow.org/wp/learnmore/.4
+
+
+VirtualBox-Image:
+http://www3.informatik.uni-wuerzburg.de/staff/christopher.
+metter/download/HWP_2015_-_Aufgabe_B_-_OpenFlow.ova
+
+
+
+
+• SDN = Software-Defined-Networking (SDN) 
+
+• TCP = Transmission Control Protocol
+- falls Pakete verloren gehen oder falsch gesendet werden, dann mittels Acknowledge Bestätigung erneut angefordert	
+=> dadurch unter Umständen längere Transaktionszeit
+
+• UDP = User Datagram Protocol
+=> schneller, da keine Bestätigung abgewartet wird, allerdings unsicherer, da Pakete (Frames)= komplett verloren gehen können (bei Video-Streaming von Vorteil, da dort auf Geschwindigkeit gesetzt wird)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

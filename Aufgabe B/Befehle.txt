@@ -1,0 +1,51 @@
+# SB-Theke Befehle aus HWP Aufgabe B zum selbst herauskopieren
+
+# mininet erzeugen
+$ sudo mn --topo single,3 --mac --switch ovsk --controller remote
+
+# Ping von h1 auf h2 (3 Pakete)
+mininet> h1 ping -c3 h2
+
+# Flow-Tabelle anzeigen
+mininet> dpctl dump-flows
+
+# Flow Tabelle leeren
+$ ovs-ofctl del-flows tcp:127.0.0.1:6634
+
+# Flow-Eintrag Verbindung Host 1 zu Host 3 herstellen
+$ ovs-ofctl add-flow tcp:127.0.0.1:6634 in_port=1,actions=output:3
+
+# Flow-Eintrag Verbindung Host 3 zu Host 1 herstellen
+$ ovs-ofctl add-flow tcp:127.0.0.1:6634 in_port=3,actions=output:1
+
+$ ovs-ofctl add-flow tcp:127.0.0.1:6634 in_port=1,idle_timeout=120,actions=output:2
+
+# Einsetzen der POX-Controller-Logik
+$ ~/pox/pox.py forwarding.tutorial_l2_hub
+
+# OpenFlow-Controller entfernen
+$ sudo killall controller
+
+# Ryu-Plattform starten
+$ cd ryu
+$ PYTHONPATH=. ./bin/ryu-manager --verbose ryu/app/hwp.py
+
+# Ryu-Plattform ohne verbose-Aktion
+$ PYTHONPATH=. ./bin/ryu-manager ryu/app/hwp.py
+
+# Terminals der Client-PC h1, h2 und h3 aufrufen
+mininet> xterm h1 h2 h3
+
+# tcp-dump auf Client-PC h1 aktivieren
+$ sudo tcpdump -XX -n -i h1-eth0
+
+# Mininet Topologie mit zwei Switches
+$ sudo mn --topo linear --switch ovsk --controller remote
+
+# Performance-Test cbench anstarten (5 Schleifen mit jeweils 16 virtuellen Switches )
+$ cd ~/oflops/cbench
+$ ./cbench -l5
+$ ./cbench -l5 -t
+
+# POX-C++-Controller starten
+$ ~/pox/pox.py forwarding.l2_learning
